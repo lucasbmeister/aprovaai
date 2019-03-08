@@ -1,5 +1,7 @@
 {
   "name": "AprovaAi",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
