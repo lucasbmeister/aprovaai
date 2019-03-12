@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+        <ion-menu-button></ion-menu-button>
+        <ion-title>Pendentes</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="card-sol-list" >
+    <ion-card class="card-sol"  *ngFor="let req of requests" (click)="onClickRequestCard(req.REQUESTNUM)">
+      <ion-card-header>
+        <ion-card-title>Solicitação {{req.REQUESTNUM}}</ion-card-title>
+        <ion-card-subtitle>Data de Emissão {{req.REQUESTDATE}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-icon name="arrow-forward"></ion-icon>
+    </ion-card>
+  </ion-list>
+</ion-content>
+
+
+<!-- The world is your oyster.
+  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p> -->

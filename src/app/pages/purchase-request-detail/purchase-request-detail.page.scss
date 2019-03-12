@@ -1,0 +1,28 @@
+.ion-list-item ion-input{
+    position: absolute;
+    margin: 0%;
+    padding: 0%;
+    left: 5px;
+}
+
+.cod-prod{
+    font-weight: bold; 
+}
+.action-buttons {
+    position: absolute;
+    left: 3%;;
+    width: 100%;
+}
+.action-buttons ion-button{
+    width: 41%;
+    float: left;
+    margin-left: 5%;
+}
+.ion-header{
+    height: 20%;
+}
+.ion-searchbar {
+    padding: 0%;
+    margin: 0%;
+    border: 0ch;
+}

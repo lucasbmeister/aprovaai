@@ -1,0 +1,28 @@
+<ion-header class="ion-header">
+  <ion-toolbar color="light">
+    <ion-title>Itens da Solicitação</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar >
+      <ion-buttons slot="start">
+        <ion-searchbar placeholder="Busca" ></ion-searchbar>
+      </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-item class="ion-list-item" *ngFor="let item of requestItems">
+          <ion-label>
+            <h2 class="cod-prod">{{item.REQPRODCOD}}</h2>
+            <h3>{{item.REQPRODQTY}} - {{item.REQPRODMU}}</h3>
+          </ion-label>
+          <ion-checkbox slot="end"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+      <div class="action-buttons">
+        <ion-button color="light">Reprovar</ion-button>
+        <ion-button >Aprovar</ion-button>
+      </div>
+</ion-content>
