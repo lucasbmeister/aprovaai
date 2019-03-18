@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PurchaseRequestPage } from './purchase-request.page';
+import { PendingPurchasePage } from './pending-purchase.page';
 
-describe('PurchaseRequestPage', () => {
-  let component: PurchaseRequestPage;
-  let fixture: ComponentFixture<PurchaseRequestPage>;
+describe('PendingPurchasePage', () => {
+  let component: PendingPurchasePage;
+  let fixture: ComponentFixture<PendingPurchasePage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PurchaseRequestPage ],
+      declarations: [ PendingPurchasePage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PurchaseRequestPage);
+    fixture = TestBed.createComponent(PendingPurchasePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

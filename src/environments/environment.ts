@@ -3,8 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  ProtheusUrl : 'https://jvd60103358.jv01.local:8092'
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -6,23 +6,21 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar >
-      <ion-buttons slot="start">
-        <ion-searchbar placeholder="Busca" ></ion-searchbar>
-      </ion-buttons>
-    </ion-toolbar>
+    <ion-searchbar placeholder="Busca"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 <ion-content padding>
     <ion-list>
         <ion-item class="ion-list-item" *ngFor="let item of requestItems">
           <ion-label>
-            <h2 class="cod-prod">{{item.REQPRODCOD}}</h2>
-            <h3>{{item.REQPRODQTY}} - {{item.REQPRODMU}}</h3>
+            <h2 class="cod-prod">{{item.ProdCod}}</h2>
+            <h3>{{item.ProdQty}} - {{item.ProdMu}}</h3>
           </ion-label>
-          <ion-checkbox slot="end"></ion-checkbox>
+          <ion-checkbox [(ngModel)]="item.IsChecked" slot="end"></ion-checkbox>
         </ion-item>
       </ion-list>
       <div class="action-buttons">
-        <ion-button color="light">Reprovar</ion-button>
-        <ion-button >Aprovar</ion-button>
+        <ion-button color="danger" (click)="refuseMarkedItems()">Reprovar</ion-button>
+        <ion-button (click)="approveMarkedItems()">Aprovar</ion-button>
       </div>
 </ion-content>

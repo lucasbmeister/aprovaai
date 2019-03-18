@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+        <ion-menu-button></ion-menu-button>
+        <ion-title>Pendentes</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+      <ion-searchbar placeholder="Busca"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>Solicitações de Compra</ion-list-header>
+    <ion-card class="list-card"  *ngFor="let req of requests" (click)="onClickRequestCard(req.RequestNum)">
+      <ion-card-header class="card-header">
+        <ion-card-title class="card-title">Solicitação {{req.RequestNum}}</ion-card-title>
+      </ion-card-header>
+      <ion-grid>
+        <ion-row>
+         <ion-col size="auto">
+        <ion-icon class="list-card-calendar" name="calendar"></ion-icon>
+         </ion-col> 
+         <ion-col size="auto">
+         <p>{{req.RequestDate}}</p>
+        </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-icon class="list-card-arrow" name="arrow-forward"></ion-icon>
+    </ion-card>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>Pedidos de Compra</ion-list-header>
+    <ion-card class="list-card"  *ngFor="let ord of orders" (click)="onClickOrderCard(req.OrderNum)">
+      <ion-card-header class="card-header">
+        <ion-card-title class="card-title">Pedido {{ord.ORDERNUM}}</ion-card-title>
+      </ion-card-header>
+      <ion-grid>
+        <ion-row>
+         <ion-col size="auto">
+        <ion-icon class="list-card-calendar" name="calendar"></ion-icon>
+         </ion-col> 
+         <ion-col size="auto">
+         <p>{{ord.ORDERDATE}}</p>
+        </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-icon class="list-card-arrow" name="arrow-forward"></ion-icon>
+    </ion-card>
+  </ion-list>
+</ion-content>
+
+
+<!-- The world is your oyster.
+  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p> -->

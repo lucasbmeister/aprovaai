@@ -4,7 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
-import { PurchaseRequestPage } from './pages/purchase-request/purchase-request.page';
+import { PendingPurchasePage } from './pages/pending-purchase/pending-purchase.page';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +23,7 @@ export class AppComponent {
 
   logout() {
     this.router.navigateByUrl('login-form');
+    localStorage.setItem('token', '');
   }
 
   initializeApp() {
