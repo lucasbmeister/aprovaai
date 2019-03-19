@@ -13,22 +13,22 @@
 <ion-content>
   <ion-list>
     <ion-list-header>Solicitações de Compra</ion-list-header>
-    <ion-card class="list-card"  *ngFor="let req of requests" (click)="onClickRequestCard(req.RequestNum)">
-      <ion-card-header class="card-header">
-        <ion-card-title class="card-title">Solicitação {{req.RequestNum}}</ion-card-title>
-      </ion-card-header>
-      <ion-grid>
-        <ion-row>
-         <ion-col size="auto">
-        <ion-icon class="list-card-calendar" name="calendar"></ion-icon>
-         </ion-col> 
-         <ion-col size="auto">
-         <p>{{req.RequestDate}}</p>
-        </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-icon class="list-card-arrow" name="arrow-forward"></ion-icon>
-    </ion-card>
+      <ion-card class="list-card"  *ngFor="let req of requests" (click)="onClickRequestCard(req.RequestNum)">
+        <ion-card-header class="card-header">
+          <ion-card-title class="card-title">Solicitação {{req.RequestNum}}</ion-card-title>
+        </ion-card-header>
+        <ion-grid>
+          <ion-row>
+          <ion-col size="auto">
+          <ion-icon class="list-card-calendar" name="calendar"></ion-icon>
+          </ion-col> 
+          <ion-col size="auto">
+          <p>{{req.RequestDate}}</p>
+          </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-icon class="list-card-arrow" name="arrow-forward"></ion-icon>
+      </ion-card>
   </ion-list>
   <ion-list>
     <ion-list-header>Pedidos de Compra</ion-list-header>

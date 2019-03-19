@@ -9,6 +9,7 @@ export class PurchaseDetail {
         public ProdMu      : string,
         public ProdQty     : string,
         public IsChecked   : boolean, 
+        public Decision    : string,
         ) { }
 }
 
@@ -24,6 +25,7 @@ export class PurchaseDetailAdapter implements Adapter<PurchaseDetail> {
             item.PRODMU,
             item.PRODQTY,
             false,
+            ""
         );
     }
 }

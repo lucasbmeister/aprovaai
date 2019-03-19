@@ -25,17 +25,7 @@ export class PendingPurchasePage implements OnInit, OnDestroy{
               private loading : LoadingControllerService) {}
 
   ngOnInit() {
-    this.loading.present();
 
-      this.subscriptions.push( this.RequestAndOrderService().subscribe(
-      data => {this.requests = data[0]; 
-               this.orders = data[1]},
-      error => {this.loading.dismiss(); alert(error)},
-      () =>
-      { 
-        this.loading.dismiss();
-      }
-    ));
   }
 
   ngOnDestroy(){
@@ -59,5 +49,19 @@ export class PendingPurchasePage implements OnInit, OnDestroy{
     let orders   = this.PurchaseOrdService.GetPurchaseOrder();
 
     return forkJoin([requests, orders])
+  }
+
+  ionViewWillEnter() {
+      this.loading.present();
+
+      this.subscriptions.push( this.RequestAndOrderService().subscribe(
+      data => {this.requests = data[0]; 
+              this.orders = data[1]},
+      error => {this.loading.dismiss(); alert(error)},
+      () =>
+      { 
+        this.loading.dismiss();
+      }
+    ));
   }
 }
