@@ -11,10 +11,8 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
 
         if (index < 0) {
 
-            let headersNewReq: HttpHeaders = new HttpHeaders();
+            let headersNewReq = req.headers;
             let token = localStorage.getItem('token');
-
-            headersNewReq.append("Authorization", "Basic " + token);
 
             const newReq = req.clone({
                headers: headersNewReq.append("Authorization", "Basic " + token)

@@ -9,14 +9,32 @@
         <ion-content>
           <ion-list>
             <ion-menu-toggle>
-              <ion-item>Pendentes</ion-item>
-              <ion-item>Aprovadas</ion-item>
-              <ion-item>Reprovadas</ion-item>
-              <ion-item>Configurações</ion-item>
-              <ion-button (click)='logout()' fill="clear">Sair</ion-button>
+              <ion-item lines="none" (tap)="goToPage('home')">
+                  <ion-icon class="ion-item-menu-icon" name="home"></ion-icon>
+                  <ion-label class="ion-item-menu-label">Início</ion-label> 
+              </ion-item>
+              <ion-item lines="none" (tap)="goToPage('purchase-request')">
+                  <ion-icon class="ion-item-menu-icon" name="paper"></ion-icon>
+                  <ion-label class="ion-item-menu-label">Solicitações</ion-label> 
+              </ion-item>
+              <ion-item lines="none" (tap)="goToPage('purchase-order')">
+                  <ion-icon class="ion-item-menu-icon" name="cart"></ion-icon>
+                  <ion-label class="ion-item-menu-label">Pedidos</ion-label>                
+              </ion-item>
+              <ion-item lines="none" (tap)="goToPage('settings')">
+                  <ion-icon class="ion-item-menu-icon" name="settings"></ion-icon>
+                <ion-label class="ion-item-menu-label">Configurações</ion-label>
+              </ion-item>
             </ion-menu-toggle>
           </ion-list>
         </ion-content>
+        <ion-footer>
+            <ion-toolbar>
+              <ion-menu-toggle>
+                <ion-button (click)='logout()' fill="clear">Sair</ion-button>
+              </ion-menu-toggle>
+            </ion-toolbar>
+          </ion-footer>
       </ion-menu>
       <ion-router-outlet main></ion-router-outlet>
     </ion-split-pane>

@@ -13,7 +13,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { Route } from '@angular/compiler/src/core';
 import { HttpsRequestInterceptor } from '../app/interceptors/interceptor';
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 
+export class CustomHammerConfig extends HammerGestureConfig {
+    overrides = {
+        'press': { time: 1000 }  //set press delay for 1 second
+    }
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +29,7 @@ import { HttpsRequestInterceptor } from '../app/interceptors/interceptor';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
     {provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true},
     PROVIDERS
   ],

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, Subscription } from 'rxjs';
 import { LoadingController, NavParams } from '@ionic/angular';
-import { PurchaseOrderDetailService } from 'src/app/providers/purchase-order-detail.service';
 import { ActivatedRoute } from '@angular/router';
+import { PurchaseOrderService } from 'src/app/providers/purchase-order.service';
 
 @Component({
   selector: 'app-purchase-order-detail',
@@ -18,7 +18,7 @@ export class PurchaseOrderDetailPage implements OnInit {
   orderNum : string;
   subscriptions : Array<Subscription> = [];
 
-  constructor(private loadingController : LoadingController, private PurchaseOrdDetailService : PurchaseOrderDetailService, private route: ActivatedRoute) 
+  constructor(private loadingController : LoadingController, private PurchaseOrderService : PurchaseOrderService, private route: ActivatedRoute) 
   { 
     this.orderNum = this.route.snapshot.paramMap.get('orderNum');
   }
@@ -27,7 +27,7 @@ export class PurchaseOrderDetailPage implements OnInit {
 
     this.presentLoading()
 
-    this.subscriptions.push(this.PurchaseOrdDetailService.GetPurchaseOrderDetail(this.orderNum).subscribe(
+    this.subscriptions.push(this.PurchaseOrderService.GetPurchaseOrderProducts(this.orderNum).subscribe(
         data => this.orderItems = data,
         error => {this.loading.dismiss(); alert(error)},
         () =>

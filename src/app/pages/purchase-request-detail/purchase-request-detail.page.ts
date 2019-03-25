@@ -2,11 +2,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of , Subscription } from 'rxjs';
 import { LoadingController, NavParams, AlertController } from '@ionic/angular';
-import { PurchaseRequestDetailService } from 'src/app/providers/purchase-request-detail.service';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { PurchaseDetail } from 'src/app/models/purchaseDetail.model';
 import { forEach } from '@angular/router/src/utils/collection';
 import { PurchaseRequestService } from 'src/app/providers/purchase-request.service';
+import { map } from 'rxjs/operators';
+import { PurchaseRequest } from 'src/app/models/purchaseRequest.model';
 
 @Component({
   selector: 'app-purchase-request-detail',
@@ -20,9 +21,9 @@ export class PurchaseRequestDetailPage implements OnInit, OnDestroy {
   loading : any;
   requestNum : string;
   subscriptions : Array<Subscription> = [];
+  currentRequest: PurchaseRequest;
 
   constructor(private loadingController : LoadingController, 
-              private PurchaseReqDetailService : PurchaseRequestDetailService,
               private route: ActivatedRoute, 
               private alertController : AlertController,
               private PurchaseRequestService : PurchaseRequestService,
@@ -34,8 +35,9 @@ export class PurchaseRequestDetailPage implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.presentLoading("Carregando items")
-
-    this.subscriptions.push(this.PurchaseReqDetailService.GetPurchaseRequestDetail(this.requestNum).subscribe(
+    this.currentRequest = this.PurchaseRequestService.GetCurrentRequest();
+    
+    this.subscriptions.push(this.PurchaseRequestService.GetPurchaseRequestProducts(this.requestNum,"" ,this.currentRequest.Company, this.currentRequest.Branch).subscribe(
         data => this.requestItems = data,
         error => {this.loading.dismiss(); alert(error)},
         () =>
@@ -84,7 +86,7 @@ export class PurchaseRequestDetailPage implements OnInit, OnDestroy {
     });
 
     if(this.requestItems.length <= 0){
-        this.router.navigateByUrl("pending-purchase")
+        this.router.navigateByUrl("purchase-request")
     }
   }
 
@@ -107,7 +109,7 @@ export class PurchaseRequestDetailPage implements OnInit, OnDestroy {
 
     this.presentLoading("Aguarde");
 
-    this.PurchaseRequestService.PutPurchaseRequest(this.requestNum, ArrayMarkedItem).subscribe(      
+    this.PurchaseRequestService.PutPurchaseRequestProducts(this.requestNum,"",ArrayMarkedItem).subscribe(      
       success => {this.presentAlert("Aprovação","","Items " + (Decision === 'L' ? "Aprovados" : "Reprovados")); 
                   this.loading.dismiss();                
                 },
@@ -117,5 +119,13 @@ export class PurchaseRequestDetailPage implements OnInit, OnDestroy {
         this.filterItems();   
       }
     );
+  }
+
+  actionButtons(){
+    return this.currentRequest.RequestStatus == 'B'
+  }
+
+  goBack(){
+    this.router.navigateByUrl("purchase-request")
   }
 }

@@ -13,12 +13,11 @@
   </ion-header>
   <ion-content padding>
       <ion-list>
-          <ion-item class="ion-list-item" *ngFor="let item of orderItems">
+          <ion-item class="ion-list-item" *ngFor="let item of orderItems" lines="none">
             <ion-label>
               <h2 class="cod-prod">{{item.PRODCOD}}</h2>
               <h3>{{item.PRODQTY}} - {{item.PRODMU}}</h3>
             </ion-label>
-            <ion-checkbox slot="end"></ion-checkbox>
           </ion-item>
         </ion-list>
         <div class="action-buttons">

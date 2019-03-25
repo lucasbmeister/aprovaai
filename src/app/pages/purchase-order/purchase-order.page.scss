@@ -1,0 +1,49 @@
+.list-arrow{
+    position: absolute;
+    right: 10px;
+    top:35%;
+    font-size: 30px;
+}
+
+.list-calendar {
+    font-size: 20px;
+}
+
+.request-num {
+    font-size: 10pt;
+    padding-bottom: 2%;
+}
+
+.request-date {
+    font-size: 10pt;
+    padding-bottom: 2%;
+}
+
+.ion-item-list{
+    width: -webkit-fill-available;
+}
+
+.list-selection{
+    font-size: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    width: -webkit-fill-available;
+}
+   
+.checkbox-list-selection{
+    position: relative;
+    left: 5%;
+}
+
+.checkbox-list{
+    display: none;
+}
+
+.ion-segment-icon{
+    font-size: 20pt !important;
+}
+
+.ok-icon{
+    font-size: 25pt;
+    color: darkcyan;
+}

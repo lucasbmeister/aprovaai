@@ -11,7 +11,7 @@
 </ion-header>
 <ion-content padding>
     <ion-list>
-        <ion-item class="ion-list-item" *ngFor="let item of requestItems">
+        <ion-item class="ion-list-item" *ngFor="let item of requestItems" lines="none">
           <ion-label>
             <h2 class="cod-prod">{{item.ProdCod}}</h2>
             <h3>{{item.ProdQty}} - {{item.ProdMu}}</h3>
@@ -19,8 +19,11 @@
           <ion-checkbox [(ngModel)]="item.IsChecked" slot="end"></ion-checkbox>
         </ion-item>
       </ion-list>
-      <div class="action-buttons">
+      <div class="action-buttons" *ngIf="actionButtons()">
         <ion-button color="danger" (click)="refuseMarkedItems()">Reprovar</ion-button>
         <ion-button (click)="approveMarkedItems()">Aprovar</ion-button>
+      </div>
+      <div *ngIf="!actionButtons()">
+          <ion-button (click)="goBack()" expand="block">OK</ion-button>
       </div>
 </ion-content>

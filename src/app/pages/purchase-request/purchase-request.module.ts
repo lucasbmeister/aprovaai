@@ -4,12 +4,12 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PendingPurchasePage } from './pending-purchase.page';
+import { PurchaseRequestPage } from './purchase-request.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: PendingPurchasePage
+    component: PurchaseRequestPage
   }
 ];
 
@@ -20,6 +20,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [PendingPurchasePage]
+  declarations: [PurchaseRequestPage]
 })
-export class PendingPurchaseModule {}
+export class PurchaseRequestModule {}
