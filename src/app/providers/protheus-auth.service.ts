@@ -36,10 +36,11 @@ export class ProtheusAuthService {
           
           if(err.status == 401) {
             reject("Acesso negado");
-          } else {
-            reject("Ocorreu um erro ao processar a requisição, tente novamente mais tarde");
+          } else if(err.status == 500) {
+            reject(err.errorMessage);
+          } else if(err.status == 404) {
+            reject(err.errorMessage);
           }
-            
         });
       } else {
         reject("Servidor não configurado");

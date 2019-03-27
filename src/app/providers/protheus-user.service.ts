@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
-import { LoggedUserAdapter } from '../models/loggedUser.model';
+import { LoggedUserAdapter, LoggedUser } from '../models/loggedUser.model';
 import { map } from 'rxjs/internal/operators/map';
+import { Observable, of, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,7 @@ export class ProtheusUserService {
               private userAdapter : LoggedUserAdapter) { }
 
 
-  GetLoggedUser(){
-    return this.http.get(environment.ProtheusUrl + "/rest/loggeduser/").pipe(
-      map((data: any[]) => data.map(item => this.userAdapter.adapt(item))),
-  );
+  GetLoggedUser() : Observable<any>{
+    return this.http.get(environment.ProtheusUrl + "/rest/loggeduser/");
   }
 }

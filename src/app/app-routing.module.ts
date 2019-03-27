@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: 'login-form', loadChildren: './pages/login-form/login-form.module#LoginFormPageModule' },
   { path: 'purchase-order-detail/:orderNum', loadChildren: './pages/purchase-order-detail/purchase-order-detail.module#PurchaseOrderDetailPageModule' },
   { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },
-  { path: 'purchase-order', loadChildren: './pages/purchase-order/purchase-order.module#PurchaseOrderPageModule' }
+  { path: 'purchase-order', loadChildren: './pages/purchase-order/purchase-order.module#PurchaseOrderPageModule' },
+  { path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule' }
 ];
 
 @NgModule({
