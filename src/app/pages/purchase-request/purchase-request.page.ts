@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PurchaseRequestService } from '../../providers/purchase-request.service';
 //import {PurchaseOrderService} from '../../providers/purchase-order.service';
-import { LoadingController, NavController } from '@ionic/angular';
+import { LoadingController, NavController, AlertController } from '@ionic/angular';
 import { RouterModule, Router } from '@angular/router';
 import { Observable, forkJoin, Subscription, empty } from 'rxjs';
 import { PurchaseRequest } from 'src/app/models/purchaseRequest.model';
@@ -29,7 +29,8 @@ export class PurchaseRequestPage implements OnInit, OnDestroy{
   constructor(private PurchaseReqService: PurchaseRequestService, 
               private loadingController : LoadingController, 
               private router :  Router,
-              private loading : LoadingControllerService) {}
+              private loading : LoadingControllerService,
+              private alertController : AlertController,) {}
 
   ngOnInit() {
 
@@ -54,6 +55,34 @@ export class PurchaseRequestPage implements OnInit, OnDestroy{
         this.currentTab = "pendentes";
       }
 
+      this.loadData()
+  }
+
+  pressEvent(e){
+    this.selection = true;
+    console.log("pressed")
+  }
+
+  deselectAll() {
+    this.selection = false;
+    this.requests.forEach(req =>{
+      req.IsChecked = false;
+    });
+  }
+
+  doNothing(){
+    
+  }
+
+  setCurrentTab(tab){
+    this.currentTab = tab;
+  }
+
+  getCurrentTab(){
+    return this.currentTab;
+  }
+
+  loadData(){
       this.pendingRequests.length = 0 ;
       this.approvedRequests.length = 0;
       this.rejectedRequests.length = 0;
@@ -81,32 +110,49 @@ export class PurchaseRequestPage implements OnInit, OnDestroy{
     ));
   }
 
-  pressEvent(e){
-    this.selection = true;
-    console.log("pressed")
-  }
-
-  deselectAll() {
-    this.selection = false;
+  public refuseAll() {
+    let marked : PurchaseRequest[] = [];
     this.requests.forEach(req =>{
-      req.IsChecked = false;
+      if(req.IsChecked){
+        req.Decision = "R";
+        marked.push(req);
+      }
     });
+    this.loading.present();
+    this.subscriptions.push(this.PurchaseReqService.PutPurchaseRequest("", marked).subscribe(
+      () => {
+        this.loading.dismiss();
+        this.presentAlert('Alerta', 'Items Reprovados', '')
+        this.loadData();
+      }
+    ));
+  }
+  public approveAll() {
+    let marked : PurchaseRequest[] = [];
+    this.requests.forEach(req =>{
+      if(req.IsChecked){
+        req.Decision = "L";
+        marked.push(req);
+      }
+    });
+    this.loading.present();
+    this.subscriptions.push(this.PurchaseReqService.PutPurchaseRequest("", marked).subscribe(
+      () => {
+        this.loading.dismiss();
+        this.presentAlert('Alerta', 'Items Aprovados', '');
+        this.loadData();
+      }
+    ));
   }
 
-  doNothing(){
-    
+  async presentAlert(header, subHeader, message) {
+    const alert = await this.alertController.create({
+      header: header,
+      subHeader: subHeader,
+      message: message,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
-
-  setCurrentTab(tab){
-    this.currentTab = tab;
-  }
-
-  getCurrentTab(){
-    return this.currentTab;
-  }
-
-  loadMore(){
-
-  }
-
 }
