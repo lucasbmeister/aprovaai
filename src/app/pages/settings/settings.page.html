@@ -11,9 +11,8 @@
   <ion-label>
     Endereço Servidor
   </ion-label>
-  <ion-input placeholder="Ex.:https://exemplo.com:8080 "></ion-input>
-  <div class="action-buttons">
-    <ion-button>Cancelar</ion-button>
-    <ion-button>Salvar</ion-button>
+  <ion-input placeholder="Ex.:https://exemplo.com:8080" [(ngModel)]="serverUrl"></ion-input>
+  <div>
+    <ion-button expand="block" (tap)="saveSettings()">Salvar</ion-button>
   </div>
 </ion-content>

@@ -18,7 +18,7 @@ export class PurchaseIndicatorsService {
 
     headers = headers.append('Access-Control-Allow-Origin', "*");
 
-    return this.http.get(environment.ProtheusUrl + "/rest/indicators", {headers : headers}).pipe(
+    return this.http.get(environment.getServerUrl() + "/rest/indicators", {headers : headers}).pipe(
       map((data : any[]) => data.map(item => this.indicatorAdaptater.adapt(item)))
       );
   }

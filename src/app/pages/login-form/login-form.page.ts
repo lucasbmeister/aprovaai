@@ -76,5 +76,9 @@ export class LoginFormPage implements OnInit {
 
     await alert.present();
   }
+
+  goToSettings(){
+    this.router.navigateByUrl('settings')
+  }
 }
 //

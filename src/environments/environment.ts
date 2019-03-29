@@ -6,8 +6,13 @@ import { LoggedUser } from 'src/app/models/loggedUser.model';
 
 export const environment = {
   production: false,
-  ProtheusUrl : 'https://jvd60103358.jv01.local:8092'
+  //ProtheusUrl : 'https://jvd60103358.jv01.local:8092',
+ 
+  getServerUrl(){
+    return localStorage.getItem("serverUrl");
+  }
 };
+
 
 
 /*

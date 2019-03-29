@@ -15,6 +15,6 @@ export class ProtheusUserService {
 
 
   GetLoggedUser() : Observable<any>{
-    return this.http.get(environment.ProtheusUrl + "/rest/loggeduser/");
+    return this.http.get(environment.getServerUrl() + "/rest/loggeduser/");
   }
 }

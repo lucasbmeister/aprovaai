@@ -19,13 +19,13 @@ export class PurchaseOrderService {
     }
 
     GetPurchaseOrder(): Observable<PurchaseOrder[]> {
-        return this.http.get(environment.ProtheusUrl + '/rest/purchaseorders/').pipe(
+        return this.http.get(environment.getServerUrl() + '/rest/purchaseorders/').pipe(
             map((data: any[]) => data.map(item => this.adapterOrder.adapt(item)))
             );
     }
 
     GetPurchaseOrderProducts(OrderNum, Product = ""): Observable<PurchaseDetail[]> {
-        return this.http.get(environment.ProtheusUrl + '/rest/purchaseorders/' + OrderNum +'/products/' + Product).pipe(
+        return this.http.get(environment.getServerUrl() + '/rest/purchaseorders/' + OrderNum +'/products/' + Product).pipe(
             map((data: any[]) => data.map(item => this.adapterProducts.adapt(item))),
         );
     }
@@ -44,7 +44,7 @@ export class PurchaseOrderService {
             body = Orders;
         }
 
-        return this.http.put(environment.ProtheusUrl + '/rest/purchaseorders/' + OrderNum, body);
+        return this.http.put(environment.getServerUrl() + '/rest/purchaseorders/' + OrderNum, body);
     }
 
     PutPurchaseOrderProducts(OrderNum, ProductNum = "", Products): Observable<any> {
@@ -57,7 +57,7 @@ export class PurchaseOrderService {
             });
         }
 
-        return this.http.put(environment.ProtheusUrl + '/rest/purchaseorders/' + OrderNum + '/products/' + ProductNum, body);
+        return this.http.put(environment.getServerUrl() + '/rest/purchaseorders/' + OrderNum + '/products/' + ProductNum, body);
     }
 
     SetCurrentOrder(order){

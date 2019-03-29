@@ -16,7 +16,7 @@ export class ProtheusAuthService {
 
   login(usr, pass) {
     return new Promise((resolve, reject) => {    
-      this.url_service = environment.ProtheusUrl;
+      this.url_service = environment.getServerUrl();
 
       if(this.url_service != null) {
 

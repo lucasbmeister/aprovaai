@@ -19,10 +19,11 @@ export class PurchaseRequestService {
         private adapterRequest: PurchaseRequestAdapter,
         private adapterProducts: PurchaseDetailAdapter,
         ) {
+
     }
 
     GetPurchaseRequest(): Observable<PurchaseRequest[]> {    
-        return this.http.get(environment.ProtheusUrl + '/rest/purchaserequests/').pipe(
+        return this.http.get(environment.getServerUrl() + '/rest/purchaserequests/').pipe(
             map((data: any[]) => data.map(item => this.adapterRequest.adapt(item))),
         );
     }
@@ -33,7 +34,7 @@ export class PurchaseRequestService {
 
         headers = headers.append('Company', Company).append('Branch', Branch);
 
-        return this.http.get(environment.ProtheusUrl + '/rest/purchaserequests/' + RequestNum + '/products/' + Product, {headers : headers}).pipe(
+        return this.http.get(environment.getServerUrl() + '/rest/purchaserequests/' + RequestNum + '/products/' + Product, {headers : headers}).pipe(
             map((data: any[]) => data.map(item => this.adapterProducts.adapt(item))),
         );
     }
@@ -52,7 +53,7 @@ export class PurchaseRequestService {
             body = Purchases;
         }
         
-        return this.http.put(environment.ProtheusUrl + '/rest/purchaserequests/' + PurchaseNum, body);
+        return this.http.put(environment.getServerUrl() + '/rest/purchaserequests/' + PurchaseNum, body);
     }
 
     PutPurchaseRequestProducts(PurchaseNum, ProductNum = "" ,Products): Observable<any> { 
@@ -65,7 +66,7 @@ export class PurchaseRequestService {
                 data : Products
             });
         }       
-        return this.http.put(environment.ProtheusUrl + '/rest/purchaserequests/' + PurchaseNum + '/products/' + ProductNum, body);
+        return this.http.put(environment.getServerUrl() + '/rest/purchaserequests/' + PurchaseNum + '/products/' + ProductNum, body);
     }
 
     SetCurrentRequest(request){
