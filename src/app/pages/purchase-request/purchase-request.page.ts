@@ -124,6 +124,10 @@ export class PurchaseRequestPage implements OnInit, OnDestroy{
         this.loading.dismiss();
         this.presentAlert('Alerta', 'Items Reprovados', '')
         this.loadData();
+        if(this.pendingRequests.length <= 0)
+        {
+          this.deselectAll()
+        }
       }
     ));
   }
@@ -141,6 +145,10 @@ export class PurchaseRequestPage implements OnInit, OnDestroy{
         this.loading.dismiss();
         this.presentAlert('Alerta', 'Items Aprovados', '');
         this.loadData();
+        if(this.pendingRequests.length <= 0)
+        {
+          this.deselectAll()
+        }
       }
     ));
   }

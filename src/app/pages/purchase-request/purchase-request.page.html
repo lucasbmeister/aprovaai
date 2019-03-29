@@ -1,9 +1,11 @@
 <ion-header>
   <ion-toolbar class="ion-toolbar">
-    <ion-buttons>
+    <ion-buttons slot="start">
         <ion-menu-button [hidden]="selection"></ion-menu-button>
         <ion-title [hidden]="selection">Solicitações de Compra</ion-title>
         <ion-button [hidden]="!selection" (tap)="deselectAll()" >X</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
         <ion-button [hidden]="!selection" (tap)="refuseAll()" >Reprovar</ion-button>
         <ion-button [hidden]="!selection" (tap)="approveAll()" >Aprovar</ion-button>
     </ion-buttons>
