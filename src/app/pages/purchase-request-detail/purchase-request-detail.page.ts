@@ -109,7 +109,7 @@ export class PurchaseRequestDetailPage implements OnInit, OnDestroy {
 
     this.presentLoading("Aguarde");
 
-    this.PurchaseRequestService.PutPurchaseRequestProducts(this.requestNum,"",ArrayMarkedItem).subscribe(      
+    this.PurchaseRequestService.PutPurchaseRequestProducts(this.requestNum,"",ArrayMarkedItem, this.currentRequest.Company, this.currentRequest.Branch).subscribe(      
       success => {this.presentAlert("Aprovação","","Items " + (Decision === 'L' ? "Aprovados" : "Reprovados")); 
                   this.loading.dismiss();                
                 },

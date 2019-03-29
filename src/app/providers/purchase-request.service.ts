@@ -46,27 +46,31 @@ export class PurchaseRequestService {
         if(Purchases instanceof Array)
         {
             body = new wrapper({
-                data : Purchases
+                Purchases
             });
         }
         else{
             body = Purchases;
         }
-        
+        console.log(body);  
         return this.http.put(environment.getServerUrl() + '/rest/purchaserequests/' + PurchaseNum, body);
     }
 
-    PutPurchaseRequestProducts(PurchaseNum, ProductNum = "" ,Products): Observable<any> { 
+    PutPurchaseRequestProducts(PurchaseNum, ProductNum = "" ,Products, Company, Branch): Observable<any> { 
         
         let body;
+        let headers: HttpHeaders = new HttpHeaders();
+
+        headers = headers.append('Company', Company).append('Branch', Branch);
 
         if(Products instanceof Array)
         {
             body = new wrapper({
-                data : Products
+                Products
             });
-        }       
-        return this.http.put(environment.getServerUrl() + '/rest/purchaserequests/' + PurchaseNum + '/products/' + ProductNum, body);
+        }    
+        console.log(body);   
+        return this.http.put(environment.getServerUrl() + '/rest/purchaserequests/' + PurchaseNum + '/products/' + ProductNum, body, {headers : headers});
     }
 
     SetCurrentRequest(request){

@@ -36,7 +36,7 @@ export class PurchaseOrderService {
         if(Orders instanceof Array)
         {
             body = new wrapper({
-                data : Orders
+                Orders
             });
         }
         else
@@ -53,7 +53,7 @@ export class PurchaseOrderService {
         if(Products instanceof Array)
         {
             body = new wrapper({
-                data : Products
+                Products
             });
         }
 
