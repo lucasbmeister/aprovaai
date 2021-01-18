@@ -1,2 +1,2 @@
 # aprovaai
-Aprova Ai
+Aplicativo Ionic para testes de integração com compras no Protheus.
